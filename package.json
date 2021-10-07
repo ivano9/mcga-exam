@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node api/api",
     "dev": "nodemon api/api",
+    "lint": "npx eslint api && npx prettier --check api",
     "seed": "node api/seed",
     "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1"
