@@ -1,0 +1,28 @@
+{
+  "name": "parcial1",
+  "version": "0.0.1",
+  "description": "MCGA - 1er parcial",
+  "main": "api/api.js",
+  "scripts": {
+    "start": "node api/api",
+    "dev": "nodemon api/api",
+    "seed": "node api/seed",
+    "prepare": "husky install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Iván Giovanazzi <ivanog@pm.me>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.6"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "eslint": "^7.32.0",
+    "faker": "^5.5.3",
+    "husky": "^7.0.2",
+    "nodemon": "^2.0.13",
+    "prettier": "^2.4.1"
+  }
+}
