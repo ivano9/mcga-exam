@@ -1,16 +1,9 @@
 'use strict'
 
 const { ordersModel } = require(__dirname + '/../models')
-const { address
-      , datatype
-      , date
-      , name
-      , phone
-} = require('faker')
-const { connect
-      , disconnect
-      , dropCollection
-} = require(__dirname + '/../config/dbConnection')
+const { address, datatype, date, name, phone } = require('faker')
+const { connect, disconnect, dropCollection } = require(__dirname +
+  '/../config/dbConnection')
 
 const TOTAL_ORDERS = 1000
 
@@ -38,7 +31,7 @@ const buildSetOfOrders = () => {
       customerName: name.firstName(),
       customerPhone: phone.phoneNumberFormat(),
       deliverType: choseDeliverType(),
-      amount: datatype.number()
+      amount: datatype.number(),
     }
     orders.push(order)
   }
@@ -51,6 +44,7 @@ const choseRandomStates = () => {
   return states[randIdx]
 }
 
-const choseDeliverType = () =>  (Math.random() > 0.5) ? 'NON-CONTACT' : 'IN-CONTACT'
+const choseDeliverType = () =>
+  Math.random() > 0.5 ? 'NON-CONTACT' : 'IN-CONTACT'
 
 module.exports = seedOrders
