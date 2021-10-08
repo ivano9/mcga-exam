@@ -1,9 +1,9 @@
 'use strict'
 
-const mongoose = require('mongoose')
+const { Schema, model } = require('mongoose')
 const uuid = require('uuid')
 
-const ordersSchema = new mongoose.Schema(
+const ordersSchema = new Schema(
   {
     _id: { type: String, default: uuid.v1 },
     number: { type: Number, required: [true, 'Number of order is required.'] },
@@ -14,7 +14,7 @@ const ordersSchema = new mongoose.Schema(
     address: { type: String, required: [true, 'Address is required.'] },
     deliverer: {
       type: Schema.Types.ObjectId,
-      ref: 'Employe',
+      ref: 'Employes',
       required: [true, 'Deliverer is required.'],
     },
     state: {
@@ -53,4 +53,4 @@ const ordersSchema = new mongoose.Schema(
   }
 )
 
-module.exports = mongoose.model('Orders', ordersSchema)
+module.exports = model('Orders', ordersSchema)
