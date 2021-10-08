@@ -1,9 +1,11 @@
 'use strict'
 
 const mongoose = require('mongoose')
+const uuid = require('uuid')
 
 const ordersSchema = new mongoose.Schema(
   {
+    _id: { type: String, default: uuid.v1 },
     number: { type: Number, required: [true, 'Number of order is required.'] },
     deliveryDateTime: {
       type: Date,
