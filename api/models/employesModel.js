@@ -43,7 +43,7 @@ const employeSchema = new Schema(
     },
     state: String,
     country: String,
-    is_active: Boolean
+    is_active: Boolean,
   },
   {
     timestamps: true,
