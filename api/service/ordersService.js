@@ -3,17 +3,24 @@
 const { ordersModel } = require('../models')
 
 const list = async (res, query) => {
-  if (!query)
+  try {
+    if (!query)
+      return res.status(200).json({
+        data: await ordersModel.find(),
+        error: false,
+      })
+
+    const orders = await ordersModel.find(query).exec()
     return res.status(200).json({
-      data: await ordersModel.find(),
+      data: !orders ? 'Not orders to show' : orders,
       error: false,
     })
-
-  const orders = await ordersModel.find(query).exec()
-  return res.status(200).json({
-    data: !orders ? 'Not orders to show' : orders,
-    error: false,
-  })
+  } catch (error) {
+    res.status(500).json({
+      data: error.stack,
+      error: true,
+    })
+  }
 }
 
 const fetch = async (res, id) => {
