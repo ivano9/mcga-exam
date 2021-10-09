@@ -29,4 +29,20 @@ const fetch = async (res, id) => {
       })
 }
 
-module.exports = { list, fetch }
+const create = async (res, data) => {
+  const order = ordersModel(data)
+  try {
+    return res.status(200).json({
+      data: await order.save(),
+      error: false,
+    })
+  } catch (err) {
+    console.error(err)
+    return res.status(400).json({
+      message: `Invalid data. Error: ${err}`,
+      error: true,
+    })
+  }
+}
+
+module.exports = { list, fetch, create }
