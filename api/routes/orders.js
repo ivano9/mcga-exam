@@ -16,7 +16,7 @@ router.route('/:id').get(getOrderById)
 
 router.route('/').post(createOrder)
 
-router.route('/').patch(updateOrder)
+router.route('/:id').patch(updateOrder)
 
 router.route('/:id').delete(removeOrder)
 

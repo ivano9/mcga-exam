@@ -49,14 +49,19 @@ const update = (res, id, data) => {
   ordersModel
     .findOneAndUpdate({ _id: id }, data, { runValidators: true, new: true })
     .then((result) =>
-      res.status(200).json({
-        data: result,
-        error: false,
-      })
+      !result
+        ? res.status(404).json({
+            data: 'Order not found',
+            error: false,
+          })
+        : res.status(200).json({
+            data: result,
+            error: false,
+          })
     )
     .catch((err) =>
       res.status(422).json({
-        data: err.errors,
+        data: err.message,
         error: true,
       })
     )
