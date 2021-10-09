@@ -16,6 +16,17 @@ const list = async (res, query) => {
   })
 }
 
-module.exports = {
-  list,
+const fetch = async (res, id) => {
+  const result = await ordersModel.findById(id).exec()
+  return !result
+    ? res.status(404).json({
+        data: 'Order not found',
+        error: true,
+      })
+    : res.status(201).json({
+        data: result,
+        error: false,
+      })
 }
+
+module.exports = { list, fetch }
