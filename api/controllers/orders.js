@@ -14,6 +14,19 @@ const getOrders = (req, res) => {
   }
 }
 
+const getOrderById = (req, res) => {
+  const { id } = req.params
+  try {
+    return ordersService.fetch(res, id)
+  } catch (err) {
+    return res.status(500).json({
+      message: err,
+      error: true,
+    })
+  }
+}
+
 module.exports = {
   getOrders,
+  getOrderById,
 }
