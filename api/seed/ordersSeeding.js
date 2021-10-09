@@ -1,7 +1,7 @@
 'use strict'
 
 const { ordersModel } = require(__dirname + '/../models')
-const { address, datatype, date, name, phone } = require('faker')
+const { address, datatype, date, name, phone, system } = require('faker')
 const { connect, disconnect, dropCollection } = require(__dirname +
   '/../config/dbConnection')
 
@@ -23,7 +23,7 @@ const buildSetOfOrders = () => {
   let orders = []
   for (let i = 0; i < TOTAL_ORDERS; i++) {
     let order = {
-      number: datatype.number(),
+      number: `${system.fileExt()}-${datatype.number()}`,
       deliveryDateTime: date.future(),
       address: address.streetAddress(),
       deliverer: datatype.uuid(),
