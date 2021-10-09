@@ -62,4 +62,17 @@ const update = (res, id, data) => {
     )
 }
 
-module.exports = { list, fetch, create, update }
+const remove = async (res, id) => {
+  const result = await ordersModel.findByIdAndRemove(id)
+  return !result
+    ? res.status(404).json({
+        data: 'Order not found',
+        error: true,
+      })
+    : res.status(204).json({
+        data: {},
+        error: false,
+      })
+}
+
+module.exports = { list, fetch, create, update, remove }
