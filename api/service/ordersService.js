@@ -45,4 +45,21 @@ const create = async (res, data) => {
   }
 }
 
-module.exports = { list, fetch, create }
+const update = (res, id, data) => {
+  ordersModel
+    .findOneAndUpdate({ _id: id }, data, { runValidators: true, new: true })
+    .then((result) =>
+      res.status(200).json({
+        data: result,
+        error: false,
+      })
+    )
+    .catch((err) =>
+      res.status(422).json({
+        data: err.errors,
+        error: true,
+      })
+    )
+}
+
+module.exports = { list, fetch, create, update }
