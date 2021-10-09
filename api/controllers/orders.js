@@ -51,9 +51,21 @@ const updateOrder = (req, res) => {
   }
 }
 
+const removeOrder = (req, res) => {
+  const { id } = req.params
+  try {
+    return ordersService.remove(res, id)
+  } catch (err) {
+    return res.status(500).json({
+      message: err,
+      error: true,
+    })
+  }
+}
 module.exports = {
   getOrders,
   getOrderById,
   createOrder,
   updateOrder,
+  removeOrder,
 }
