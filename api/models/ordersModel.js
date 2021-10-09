@@ -6,7 +6,11 @@ const uuid = require('uuid')
 const ordersSchema = new Schema(
   {
     _id: { type: String, default: uuid.v1 },
-    number: { type: Number, required: [true, 'Number of order is required.'] },
+    number: {
+      type: String,
+      required: [true, 'Number of order is required.'],
+      unique: true,
+    },
     deliveryDateTime: {
       type: Date,
       required: [true, 'Dispatch date is required.'],
