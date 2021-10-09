@@ -3,10 +3,9 @@
 const { ordersService } = require('../service')
 
 const getOrders = (req, res) => {
-  const { customer_name } = req.query
-
+  const query = req.query
   try {
-    return ordersService.list(res, customer_name)
+    return ordersService.list(res, query)
   } catch (err) {
     return res.status(500).json({
       data: `Something wrong while listing the customers. Error: ${err}`,
