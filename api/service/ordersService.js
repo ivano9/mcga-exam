@@ -15,3 +15,7 @@ const list = async (res, category) => {
     error: false,
   })
 }
+
+module.exports = {
+  list,
+}
