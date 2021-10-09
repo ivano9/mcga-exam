@@ -9,12 +9,12 @@ const ordersSchema = new Schema(
     number: { type: Number, required: [true, 'Number of order is required.'] },
     deliveryDateTime: {
       type: Date,
-      required: [true, 'Dispach date is required.'],
+      required: [true, 'Dispatch date is required.'],
     },
     address: { type: String, required: [true, 'Address is required.'] },
     deliverer: {
-      type: Schema.Types.ObjectId,
-      ref: 'Employes',
+      type: String,
+      ref: 'Employees',
       required: [true, 'Deliverer is required.'],
     },
     state: {

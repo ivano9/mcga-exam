@@ -3,20 +3,20 @@
 const { Schema, model } = require('mongoose')
 const uuid = require('uuid')
 
-const employeSchema = new Schema(
+const employeeSchema = new Schema(
   {
     _id: { type: String, default: uuid.v1 },
     first_name: {
       type: String,
-      required: [true, 'Employe first name is required'],
+      required: [true, 'Employee first name is required'],
     },
     last_name: {
       type: String,
-      required: [true, 'Employe last name is required'],
+      required: [true, 'Employee last name is required'],
     },
     street: {
       type: String,
-      required: [true, 'Employe street is required'],
+      required: [true, 'Employee street is required'],
     },
     city: String,
     email: {
@@ -28,7 +28,7 @@ const employeSchema = new Schema(
           ),
         message: (props) => `${props.value} is not a valid email!`,
       },
-      required: [true, 'Employe email is required'],
+      required: [true, 'Employee email is required'],
       unique: true,
     },
     phone: {
@@ -38,7 +38,7 @@ const employeSchema = new Schema(
           /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(v),
         message: (props) => `${props.value} is not a valid phone number!`,
       },
-      required: [true, 'Employe phone number is required'],
+      required: [true, 'Employee phone number is required'],
       unique: true,
     },
     state: String,
@@ -51,4 +51,4 @@ const employeSchema = new Schema(
   }
 )
 
-module.exports = model('Employes', employeSchema)
+module.exports = model('Employees', employeeSchema)
