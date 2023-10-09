@@ -12,7 +12,7 @@ const ordersSchema = new Schema(
       unique: true,
     },
     deliveryDateTime: {
-      type: Date,
+      type: Number,
       required: [true, 'Dispatch date is required.'],
     },
     address: { type: String, required: [true, 'Address is required.'] },

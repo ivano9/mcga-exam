@@ -1,6 +1,7 @@
 'use strict'
 
 const { ordersModel } = require('../models')
+const orderNumber = require('../utils.js')
 
 const list = async (res, query) => {
   try {
@@ -37,6 +38,8 @@ const fetch = async (res, id) => {
 }
 
 const create = async (res, data) => {
+  data.number = orderNumber()
+  data.deliveryDateTime = Date.now()
   const order = ordersModel(data)
   try {
     return res.status(200).json({
