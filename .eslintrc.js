@@ -1,4 +1,5 @@
 module.exports = {
+  "ignorePatterns": ["api/config/logger.js"],
   "env": {
     "browser": true,
     "commonjs": true,
