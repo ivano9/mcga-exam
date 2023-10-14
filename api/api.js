@@ -3,6 +3,7 @@
 const express = require('express')
 const { connect } = require('./config/dbConnection')
 const cors = require('cors')
+const logger = require('./config/logger')
 
 const app = express()
 
@@ -14,6 +15,8 @@ app.use(cors())
 app.get('/', (_req, res) => res.send('Servidor ok'))
 
 app.use('/api/v1.0', require('./routes'))
+
+logger.info('ENVIRONMENT: %s', logger.level)
 
 connect()
 const PORT = process.env.PORT || 3000
