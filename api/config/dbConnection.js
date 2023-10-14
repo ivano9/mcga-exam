@@ -1,6 +1,7 @@
 'use strict'
 
 const mongoose = require('mongoose')
+const logger = require('./logger')
 
 if (
   process.env.ENV != 'production' &&
@@ -16,9 +17,9 @@ const connect = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    console.log('Mongodb connected')
+    logger.info('Mongodb connected')
   } catch (err) {
-    console.error(
+    logger.error(
       `Error was ocurred when tried to connect to mongodb... error: ${err}`
     )
   }

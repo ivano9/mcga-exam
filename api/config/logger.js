@@ -1,11 +1,11 @@
 'use strict'
 
-const LOG_LEVEL = process.env.LOG_LEVEL || 'info'
+const LOG_LEVEL = process.env.LOG_LEVEL || 'debug'
 
 const logger = require('tracer').console({
   level: LOG_LEVEL,
   format: [
-    '{{timestamp}} <{{title}}> {{message}} (in {{file}}:{{line}})',
+    '{{timestamp}} <{{title}}> [{{message}}] (in {{file}}:{{line}})',
     {
       error:
         '{{timestamp}} <{{title}}> {{message}} (in {{file}}:{{line}})\nCall Stack:\n{{stack}}',

@@ -16,10 +16,10 @@ app.get('/', (_req, res) => res.send('Servidor ok'))
 
 app.use('/api/v1.0', require('./routes'))
 
-logger.info('ENVIRONMENT: %s', logger.level)
+logger.info('ENVIRONMENT: %s', process.env.ENV || 'info')
 
 connect()
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
-  console.log(`API running on http://localhost:${PORT}`)
+  logger.info('API running on http://localhost:%s', PORT)
 })
