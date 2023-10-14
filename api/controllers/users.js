@@ -8,7 +8,7 @@ const {
   ERROR_CODE_ALREADY_EXISTS,
 } = require('../const')
 
-const exist = async (email) => (await userService.find(email)).length > 0
+const exist = async (pattern) => (await userService.find(pattern)).length > 0
 
 const getUsers = async (req, res) => {
   try {
@@ -45,14 +45,15 @@ const getUserById = async (req, res) => {
 const createUser = async (req, res) => {
   try {
     const data = req.body
-    const { email } = data
+    const { username, scope } = data
+    logger.info('Creating %s with scope %s.', username, scope)
 
-    if (await exist({ email: email })) {
-      logger.error('Email %s already exists.', email)
+    if (await exist({ username: username })) {
+      logger.error('Username %s already exists.', username)
 
       return res.status(409).json({
         code: ERROR_CODE_ALREADY_EXISTS,
-        message: `Email ${email} already exists.`,
+        message: `Username ${username} already exists.`,
       })
     }
 

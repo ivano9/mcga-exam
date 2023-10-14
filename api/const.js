@@ -7,10 +7,14 @@ const ERROR_CODE_UNAUTHORIZED = PREFIX + 'unauthorized'
 const ERROR_CODE_UNEXPECTED = PREFIX + 'unexpected_error'
 const ERROR_CODE_ALREADY_EXISTS = PREFIX + 'already_exists'
 
+const SECRET_KEY = process.env.ENV || 'Orders@pp333'
+
 module.exports = {
   ERROR_CODE_INVALID_DATA,
   ERROR_CODE_NOT_FOUND,
   ERROR_CODE_UNAUTHORIZED,
   ERROR_CODE_UNEXPECTED,
   ERROR_CODE_ALREADY_EXISTS,
+
+  SECRET_KEY,
 }

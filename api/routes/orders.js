@@ -9,15 +9,16 @@ const {
   updateOrder,
   removeOrder,
 } = require('../controllers/orders')
+const { authAdminRequest } = require('../middlewares/authorizationAccess')
 
 router.route('/').get(getOrders)
 
-router.route('/:id').get(getOrderById)
+router.get('/:id', authAdminRequest, getOrderById)
 
-router.route('/').post(createOrder)
+router.post('/', authAdminRequest, createOrder)
 
-router.route('/:id').patch(updateOrder)
+router.patch('/:id', authAdminRequest, updateOrder)
 
-router.route('/:id').delete(removeOrder)
+router.delete('/:id', authAdminRequest, removeOrder)
 
 module.exports = router

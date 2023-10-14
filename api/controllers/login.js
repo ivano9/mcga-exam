@@ -10,11 +10,11 @@ const logger = require('../config/logger')
 //     cacheSessions.push(token)
 //     user.id
 const login = async (req, res) => {
-  const { email, password } = req.body
+  const { username, password } = req.body
 
   try {
     const user = await userService.findOne(
-      { email: email },
+      { username: username },
       { password: 1, scope: 1 }
     )
 

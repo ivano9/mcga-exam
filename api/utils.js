@@ -1,5 +1,8 @@
 'use strict'
 
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+const { SECRET_KEY } = require('./const')
 const choseBetween = (min, max) => {
   // generate random number
   let rand = Math.random()
@@ -32,5 +35,25 @@ const orderNumber = () => {
   const randNumber = Math.floor(1000 + Math.random() * 9000)
   return `${threeChars()}-${randNumber}`
 }
+const comparePassword = async (password, hashedPassword) =>
+  await bcrypt.compare(password, hashedPassword)
 
-module.exports = orderNumber
+const generateToken = (user, exp) =>
+  jwt.sign(
+    {
+      sub: user.id,
+      exp,
+      iss: 'sso.orders.com',
+      scope: user.scope,
+    },
+    SECRET_KEY
+  )
+
+const expires = () => Math.floor(Date.now() / 1000) + 60 * 60 // 1hour
+
+module.exports = {
+  orderNumber,
+  comparePassword,
+  generateToken,
+  expires,
+}
