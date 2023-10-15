@@ -12,7 +12,6 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.json())
 app.use(cors())
-app.options('*', cors())
 
 app.get('/', (_req, res) => res.send('Servidor ok'))
 
