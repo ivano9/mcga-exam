@@ -9,6 +9,7 @@ const ERROR_CODE_ALREADY_EXISTS = PREFIX + 'already_exists'
 
 const SECRET_KEY = process.env.SECRET_KEY || 'Orders@pp333'
 const ENVIRONMENT = process.env.ENV || 'dev'
+const PORT = process.env.PORT || 3000
 
 module.exports = {
   ERROR_CODE_INVALID_DATA,
@@ -19,4 +20,5 @@ module.exports = {
 
   SECRET_KEY,
   ENVIRONMENT,
+  PORT,
 }

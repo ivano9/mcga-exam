@@ -6,9 +6,6 @@ const { userService } = require('../service')
 const { ERROR_CODE_UNAUTHORIZED, ERROR_CODE_UNEXPECTED } = require('../const')
 const logger = require('../config/logger')
 
-// const storeSession = (id, token) =>
-//     cacheSessions.push(token)
-//     user.id
 const login = async (req, res) => {
   const { username, password } = req.body
 
@@ -21,13 +18,13 @@ const login = async (req, res) => {
     if (!user)
       return res.status(401).json({
         code: ERROR_CODE_UNAUTHORIZED,
-        message: 'Invalid email or password',
+        message: 'Invalid username or password',
       })
 
     if (!(await comparePassword(password, user.password)))
       return res.status(401).json({
         code: ERROR_CODE_UNAUTHORIZED,
-        message: 'Invalid email or password',
+        message: 'Invalid username or password',
       })
 
     const exp = expires()

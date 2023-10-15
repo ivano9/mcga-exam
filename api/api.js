@@ -21,7 +21,7 @@ app.use('/api/v1.0', require('./routes'))
 logger.info('ENVIRONMENT: %s', ENVIRONMENT)
 
 connect()
-const PORT = process.env.PORT || 3000
+const PORT = PORT || 3000
 app.listen(PORT, () => {
   logger.info('API running on http://localhost:%s', PORT)
 })
