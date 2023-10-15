@@ -1,6 +1,6 @@
 'use strict'
 
-const { ENVIRONMENT } = require('./const')
+const { ENVIRONMENT, PORT } = require('./const')
 const express = require('express')
 const { connect } = require('./config/dbConnection')
 const cors = require('cors')
@@ -20,7 +20,7 @@ app.use('/api/v1.0', require('./routes'))
 logger.info('ENVIRONMENT: %s', ENVIRONMENT)
 
 connect()
-const PORT = PORT || 3000
+
 app.listen(PORT, () => {
   logger.info('API running on http://localhost:%s', PORT)
 })
