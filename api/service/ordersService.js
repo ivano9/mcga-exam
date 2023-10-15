@@ -1,7 +1,7 @@
 'use strict'
 
 const { ordersModel } = require('../models')
-const orderNumber = require('../utils.js')
+const { orderNumber } = require('../utils.js')
 
 const list = async (res, query) => {
   try {

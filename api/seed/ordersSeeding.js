@@ -1,11 +1,11 @@
 'use strict'
 
 const { ordersModel } = require(__dirname + '/../models')
-const { address, datatype, date, name, phone, system } = require('faker')
+const { address, datatype, name, phone, system } = require('faker')
 const { connect, disconnect, dropCollection } = require(__dirname +
   '/../config/dbConnection')
 
-const TOTAL_ORDERS = 1000
+const TOTAL_ORDERS = 500
 
 const seedOrders = async () => {
   try {
@@ -24,7 +24,7 @@ const buildSetOfOrders = () => {
   for (let i = 0; i < TOTAL_ORDERS; i++) {
     let order = {
       number: `${system.fileExt()}-${datatype.number()}`,
-      deliveryDateTime: date.future(),
+      deliveryDateTime: Date.now(),
       address: address.streetAddress(),
       deliverer: datatype.uuid(),
       state: choseRandomStates(),
