@@ -38,10 +38,11 @@ const fetch = async (res, id) => {
 }
 
 const create = async (res, data) => {
-  data.number = orderNumber()
-  data.deliveryDateTime = Date.now()
-  const order = ordersModel(data)
   try {
+    data.number = orderNumber()
+    data.deliveryDateTime = Date.now()
+    const order = ordersModel(data)
+
     return res.status(200).json({
       data: await order.save(),
       error: false,
