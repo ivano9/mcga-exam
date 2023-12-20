@@ -37,10 +37,10 @@ const getOrderById = (req, res) => {
   }
 }
 
-const createOrder = (req, res) => {
+const createOrder = async (req, res) => {
   const data = req.body
   try {
-    return ordersService.create(data)
+    return await ordersService.create(res, data)
   } catch (err) {
     logger.error('Unexpected error. Error: ', err)
     return res.status(500).json({
