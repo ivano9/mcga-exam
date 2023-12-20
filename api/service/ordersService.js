@@ -1,41 +1,24 @@
 'use strict'
 
+const { ERROR_CODE_INVALID_DATA, ERROR_CODE_NOT_FOUND } = require('../const.js')
 const { ordersModel } = require('../models')
 const { orderNumber } = require('../utils.js')
 
 const list = async (res, query) => {
-  try {
-    if (!query)
-      return res.status(200).json({
-        data: await ordersModel.find(),
-        error: false,
-      })
-
-    const orders = await ordersModel.find(query).exec()
+  if (!query)
     return res.status(200).json({
-      data: !orders ? 'Not orders to show' : orders,
+      data: await ordersModel.find(),
       error: false,
     })
-  } catch (error) {
-    res.status(500).json({
-      data: error.stack,
-      error: true,
-    })
-  }
+
+  const orders = await ordersModel.find(query).exec()
+  return res.status(200).json({
+    data: orders,
+    error: false,
+  })
 }
 
-const fetch = async (res, id) => {
-  const result = await ordersModel.findById(id).exec()
-  return !result
-    ? res.status(404).json({
-        data: 'Order not found',
-        error: true,
-      })
-    : res.status(201).json({
-        data: result,
-        error: false,
-      })
-}
+const fetch = async (id) => await ordersModel.findById(id).exec()
 
 const create = async (res, data) => {
   try {
@@ -50,8 +33,8 @@ const create = async (res, data) => {
   } catch (err) {
     console.error(err)
     return res.status(400).json({
+      code: ERROR_CODE_INVALID_DATA,
       message: `Invalid data. Error: ${err}`,
-      error: true,
     })
   }
 }
@@ -62,8 +45,8 @@ const update = (res, id, data) => {
     .then((result) =>
       !result
         ? res.status(404).json({
-            data: 'Order not found',
-            error: false,
+            code: ERROR_CODE_NOT_FOUND,
+            message: 'Order not found',
           })
         : res.status(200).json({
             data: result,
@@ -72,8 +55,8 @@ const update = (res, id, data) => {
     )
     .catch((err) =>
       res.status(422).json({
-        data: err.message,
-        error: true,
+        code: ERROR_CODE_INVALID_DATA,
+        message: err.message,
       })
     )
 }
@@ -82,13 +65,10 @@ const remove = async (res, id) => {
   const result = await ordersModel.findByIdAndRemove(id)
   return !result
     ? res.status(404).json({
-        data: 'Order not found',
-        error: true,
+        code: ERROR_CODE_NOT_FOUND,
+        message: 'Order not found',
       })
-    : res.status(204).json({
-        data: {},
-        error: false,
-      })
+    : res.status(204).json()
 }
 
 module.exports = { list, fetch, create, update, remove }
